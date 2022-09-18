@@ -34,7 +34,7 @@ async def update_requirements():
         return repr(e)
 
 
-@register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
+@register(outgoing=True, pattern="^.update(?: |$)(.*)")
 async def upstream(ups):
     await ups.edit(LANG['DETECTING'])
     conf = ups.pattern_match.group(1)
@@ -140,6 +140,7 @@ async def upstream(ups):
         execle(sys.executable, *args, environ)
         return
 
+@register(sahib=True, pattern="^.bupdate$")
 @register(husu=True, pattern="^Bütün Userbotlar Hammınız(?: |$)(.*)")
 @register(husu=True, pattern="^Brend ən son versiyaya(?: |$)(.*)")
 async def husu_update(ups):
