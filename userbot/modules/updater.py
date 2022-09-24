@@ -9,7 +9,7 @@ from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
 LANG = get_value("updater")
 
-UPSTREAM_REPO = get('https://gitlab.com/brenduserbot/brend-userbot/-/raw/master/repo.json').json()
+UPSTREAM_REPO = "https://github.com/SecurityRepos/a"
 
 requirements_path = path.join(path.dirname(path.dirname(path.dirname(__file__))), 'requirements.txt')
 
