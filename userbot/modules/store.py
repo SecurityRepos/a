@@ -1,7 +1,7 @@
 import os, importlib, re, userbot.cmdhelp
 from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register
-from userbot import BOT_USERNAME, PATTERNS, CMD_HELP, PLUGIN_ID
+from userbot import BOT_USERNAME, PATTERNS, CMD_HELP, PLUGIN_ID, BREND_VERSION as bv
 from random import choice, sample
 from userbot.main import extractCommands
 from userbot.language import get_value
@@ -10,7 +10,7 @@ LANG = get_value("__plugin")
 @register(outgoing=True, pattern="^.store ?(.*)")
 async def magaza(event):
     plugin = event.pattern_match.group(1)
-    await event.edit('**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n`🔎 Plugin\'i axtarıram... Biraz gözlə.`')
+    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n`🔎 Plugin\'i axtarıram... Biraz gözlə.`')
     split = plugin.split()
     if plugin == '':
         plugin = 'Son Yüklənən'
@@ -24,7 +24,7 @@ async def magaza(event):
         random = await event.client.get_messages('@brendplugin', limit=None, filter=InputMessagesFilterDocument)
         random = choice(random)
         random_file = random.file.name
-    result = f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n**🔎 Axtarılan:** `{plugin}`\n**📝 Nəticələr: __({len(plugins)})__**\n➖➖➖➖➖➖➖➖\n'
+    result = f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**🔎 Axtarılan:** `{plugin}`\n**📝 Nəticələr: __({len(plugins)})__**\n➖➖➖➖➖➖➖➖\n'
     if len(plugins) == 0:
         result += f'**Heç nə tapılmadı...**\n{random_file} __plugininə nə deyirsən?__'
     else:
@@ -44,12 +44,12 @@ async def sinstall(event):
     try:
         plugin = int(plugin)
     except:
-        return await event.edit('**Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n**⚠️ Xəta:** `Xahiş edirəm yalnız nömrələr yazın. Eklentiləri axtarmaq istəyirsinizsə .store əmrini istifadə edin.`')
-    await event.edit('**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n`🔎 Plugin\'i gətirirəm... Zəhmət olmasa gözlə.`')
+        return await event.edit(f'**Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**⚠️ Xəta:** `Xahiş edirəm yalnız nömrələr yazın. Eklentiləri axtarmaq istəyirsinizsə .store əmrini istifadə edin.`')
+    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n`🔎 Plugin\'i gətirirəm... Zəhmət olmasa gözlə.`')
     plugin = await event.client.get_messages('@BrendPlugin', ids=plugin)
-    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎__Versiya 2.0__\n\n`✅ {plugin.file.name} plugin gətirildi!`\n`📥 Plugini yükləyirəm... Zəhmət olmasa gözlə.`')
+    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎__Versiya {bv}__\n\n`✅ {plugin.file.name} plugin gətirildi!`\n`📥 Plugini yükləyirəm... Zəhmət olmasa gözlə.`')
     dosya = await plugin.download_media('./userbot/modules/')
-    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎__Versiya 2.0__\n\n`✅ {plugin.file.name} yükləmə bitdi!`\n`📥 Plugini yüklüyürəm... Zəhmət olmasa gözlə.`')
+    await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎__Versiya {bv}__\n\n`✅ {plugin.file.name} yükləmə bitdi!`\n`📥 Plugini yüklüyürəm... Zəhmət olmasa gözlə.`')
     
     try:
         spec = importlib.util.spec_from_file_location(dosya, dosya)
@@ -57,7 +57,7 @@ async def sinstall(event):
         spec.loader.exec_module(mod)
     except Exception as e:
         os.remove("./userbot/modules/" + dosya)
-        return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n**⚠️ Xəta:** `xətalı. {e}`\n**BUNU ADMINLƏRƏ BİLDİRİN!**')
+        return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**⚠️ Xəta:** `xətalı. {e}`\n**BUNU ADMINLƏRƏ BİLDİRİN!**')
 
     dosy = open(dosya, "r").read()
     if re.search(r"@tgbot\.on\(.*pattern=(r|)\".*\".*\)", dosy):
@@ -86,12 +86,12 @@ async def sinstall(event):
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await plugin.forward_to(PLUGIN_ID)
-                return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n**✅ Modul yükləndi!**\n__ℹ️ Modulun əmrləri və istifadəsi haqqında məlumat əldə etmək üçün__ `.brend {cmdhelp}` __yazın.__')
+                return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**✅ Modul yükləndi!**\n__ℹ️ Modulun əmrləri və istifadəsi haqqında məlumat əldə etmək üçün__ `.brend {cmdhelp}` __yazın.__')
             else:
                 dosyaAdi = plugin.file.name.replace('.py', '')
                 extractCommands(dosya)
                 await plugin.forward_to(PLUGIN_ID)
-                return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya 2.0__\n\n**✅ Modul yükləndi!**\n__ℹ️ Modulun əmrləri və istifadəsi haqqında məlumat əldə etmək üçün__ `.brend {dosyaAdi}` __yazın.__')
+                return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**✅ Modul yükləndi!**\n__ℹ️ Modulun əmrləri və istifadəsi haqqında məlumat əldə etmək üçün__ `.brend {dosyaAdi}` __yazın.__')
 
 userbot.cmdhelp.CmdHelp('store').add_command(
     'store', '<söz>', 'Ən son Pluginləri Plugin kanalından gətirir. Sözlər yazsanız, axtarar.'
