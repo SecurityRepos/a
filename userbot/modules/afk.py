@@ -265,7 +265,7 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@register(outgoing=True, pattern="(?: |$)(.*)"))
+@register(outgoing=True, pattern="(?: |$)(.*)")
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
