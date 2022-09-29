@@ -269,7 +269,7 @@ async def type_afk_is_not_true(notafk):
     global COUNT_MSG
     global USERS
     global AFKREASON
-    if notafk.pattern_match.group(0)
+    if notafk.pattern_match.group(0):
         if ISAFK:
             ISAFK = False
             await notafk.respond(LANG['IM_NOT_AFK'])
