@@ -5,6 +5,7 @@ gitpython
 numpy
 pybase64
 pydub
+pyscopg2-binary 
 requests
 googletrans==4.0.0rc1
 sqlalchemy==1.3.23
