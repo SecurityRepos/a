@@ -265,24 +265,25 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@bot.on(NewMessage(outgoing=True, pattern="(?: |$)(.*)"))
+@register(outgoing=True, pattern="(?: |$)(.*)"))
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
     global USERS
     global AFKREASON
-    if ISAFK:
-        ISAFK = False
-        await notafk.respond(LANG['IM_NOT_AFK'])
-        await sleep(2)
-        if BOTLOG:
-            await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
-            for i in USERS:
-                name = await notafk.client.get_entity(i)
-                name0 = "name.first_name"
-                await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
-        COUNT_MSG = 0
-        USERS = {}
-        AFKREASON = None
+    if afk_e.pattern_match.group(1)
+        if ISAFK:
+            ISAFK = False
+            await notafk.respond(LANG['IM_NOT_AFK'])
+            await sleep(2)
+            if BOTLOG:
+                await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
+                for i in USERS:
+                    name = await notafk.client.get_entity(i)
+                    name0 = "name.first_name"
+                    await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
+            COUNT_MSG = 0
+            USERS = {}
+            AFKREASON = None
 
 CmdHelp('afk').add_command('afk', '<İstəyə bağlı səbəb>', 'AFK olduğunuzu bildirər. Kimsə sizə şəxidə mesaj yazarsa və tag edərsə afk olduğunuzu və səbəbinizi çatdırar. Hər hansı bir yerə mesaj yazdıqda afk modu dayanar.').add()
