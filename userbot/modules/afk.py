@@ -5,8 +5,10 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from time import time
+from userbot import bot
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
+from telethon.events import NewMessage
 LANG = get_value("afk")
 
 SON_GORULME = 0
@@ -263,7 +265,7 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@register(outgoing=True, pattern="(?: |$)(.*)")
+@bot.on(NewMessage(outgoing=True, pattern="(?: |$)(.*)"))
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
@@ -278,7 +280,7 @@ async def type_afk_is_not_true(notafk):
             for i in USERS:
                 name = await notafk.client.get_entity(i)
                 name0 = "name.first_name"
-                await notafk.client.send_message(BOTLOG_CHATID,"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
+                await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
