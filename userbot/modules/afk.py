@@ -5,10 +5,8 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from time import time
-from userbot import bot
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
-from telethon.events import NewMessage
 LANG = get_value("afk")
 
 SON_GORULME = 0
@@ -271,7 +269,7 @@ async def type_afk_is_not_true(notafk):
     global COUNT_MSG
     global USERS
     global AFKREASON
-    if afk_e.pattern_match.group(1)
+    if notafk.pattern_match.group(1)
         if ISAFK:
             ISAFK = False
             await notafk.respond(LANG['IM_NOT_AFK'])
