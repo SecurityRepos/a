@@ -1,10 +1,11 @@
 from random import randint
 from asyncio import sleep
-from telethon.events import StopPropagation
+from telethon.events import StopPropagation, NewMessage
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from time import time
+from userbot import bot
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
 LANG = get_value("afk")
@@ -263,25 +264,24 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@register(outgoing=True)
+@bot.on(NewMessage())
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
     global USERS
     global AFKREASON
-    if notafk.text:
-        if ISAFK:
-            ISAFK = False
-            await notafk.respond(LANG['IM_NOT_AFK'])
-            await sleep(2)
-            if BOTLOG:
-                await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
-                for i in USERS:
-                    name = await notafk.client.get_entity(i)
-                    name0 = "name.first_name"
-                    await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
-            COUNT_MSG = 0
-            USERS = {}
-            AFKREASON = None
+    if ISAFK:
+        ISAFK = False
+        await notafk.respond(LANG['IM_NOT_AFK'])
+        await sleep(2)
+        if BOTLOG:
+            await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
+            for i in USERS:
+                name = await notafk.client.get_entity(i)
+                name0 = "name.first_name"
+                await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
+        COUNT_MSG = 0
+        USERS = {}
+        AFKREASON = None
 
-CmdHelp('afk').add_command('afk', '<İstəyə bağlı səbəb>', 'AFK olduğunuzu bildirər. Kimsə sizə şəxidə mesaj yazarsa və tag edərsə afk olduğunuzu və səbəbinizi çatdırar. Hər hansı bir yerə mesaj yazdıqda afk modu dayanar.').add()
+CmdHelp('afk').add_command('afk', '<İstəyə bağlı səbəb>', 'AFK olduğunuzu bildirər. Kimsə sizi axtararsa afk olduğunuzu və səbəbinizi çatdırar. Hər hansı bir yerə mesaj yazdıqda afk modu deaktiv olar.').add()
