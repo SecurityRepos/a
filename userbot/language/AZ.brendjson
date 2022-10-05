@@ -16,13 +16,13 @@
             "PLUGIN_DOWNLOADED": "📥 Modul uğurla yükləndi\n➖➖➖➖➖➖➖➖➖➖➖\n📝İstifadəsi: %s",
             "PLUGIN_WITHOUT_DESC": "Bu plugin qırağdan yüklənmişdir. İstifadəsi: #ƏMR TAPILMADI#",
             "PLUGIN_DESCLESS": "`Modul uğurla yükləndi! Ancaq əmri təssüf ki, tapa bilmədim.`",
-            "PLUG_DESC": "Bu plugin qırağdan yüklənmişdir. İstifadəsi: .",
+            "PLUG_DESC": "Bu plugin Brend Userbot tərəfindən dəstəklənmir. İstifadəsi: .",
             "PLUG_MESSAGE": "📥 Modul uğurla yükləndi\n➖➖➖➖➖➖➖➖➖➖➖\n📝İstifadəsi: `.%s`",
-            "PREMOVE_GIVE_NAME": "😬`Zəhmət olmasa əmrin yanına bir plugin qeyd edin.`",
-            "PREMOVE_DELETING": "🗳️`Plugin Silinir...`",
-            "ALREADY_DELETED": "🗑️`Plugin faylı artıq silinib.`",
+            "PREMOVE_GIVE_NAME": "😬 `Zəhmət olmasa əmrin yanına bir plugin qeyd edin.`",
+            "PREMOVE_DELETING": "🗳️ `Plugin Silinir...`",
+            "ALREADY_DELETED": "🗑️ `Plugin faylı artıq silinib.`",
             "NOT_FOUND_PLUGIN": "`Belə bir plugin bəlkə var idi, bəlkədə yox. Ancaq hazırda olmadığı dəqiqdir.`",
-            "PLUG_DELETED": "🗑️ Plugin silindi\n➖➖➖➖➖➖➖➖➖➖➖\nℹ️ **Tam silmək üçün botu yenidən başladın.**",
+            "PLUG_DELETED": "🗑️ Plugin silindi\n➖➖➖➖➖➖➖➖➖➖➖\nℹ️ **Bot Avtomatik Yenidən başlayır.**",
             "BREND_PLUGIN_CAPTION": "⚡ [Bu Brend Userbot](https://t.me/BrendUserBot) pluginidir."
         },
         
