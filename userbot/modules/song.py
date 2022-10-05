@@ -68,28 +68,26 @@ async def mahniyukle(event):
         url = f"https://youtube.com{results[0]['url_suffix']}"
     except BaseException:
         return await event.edit("🤦🏻‍♂️ Mahnını tapa bilmirəm...")
-    type = "audio"
     await event.edit(f"📥 Hazırdır Endirilir...")
-    if type == "audio":
-        opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "m4a",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.m4a",
-            "quiet": True,
-            "logtostderr": False,
-        }
+    opts = {
+        "format": "bestaudio",
+        "addmetadata": True,
+        "key": "FFmpegMetadata",
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "m4a",
+                "preferredquality": "320",
+            }
+        ],
+        "outtmpl": "%(id)s.m4a",
+        "quiet": True,
+        "logtostderr": False,
+    }
     try:
         await event.edit("🔄 Musiqi məlumatı əldə olunur...")
         with YoutubeDL(opts) as rip:
