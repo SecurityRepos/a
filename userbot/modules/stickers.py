@@ -36,15 +36,18 @@ async def kang(event):
             pack_username = user.first_name
         except UnicodeDecodeError: # User's first name isn't ASCII, use ID instead
             pack_username = user.id
-    else: pack_username = user.username
+    else:
+        pack_username = user.username
 
     textx = await event.get_reply_message()
     emoji = event.pattern_match.group(2)
     number = int(event.pattern_match.group(3) or 1) # If no number specified, use 1
     new_pack = False
 
-    if textx.photo or textx.sticker: message = textx
-    elif event.photo or event.sticker: message = event
+    if textx.photo or textx.sticker or text.video:
+        message = textx
+    elif event.photo or event.sticker or event.video:
+        message = event
     else:
         await event.edit(LANG['GIVE_STICKER'])
         return
@@ -72,7 +75,7 @@ async def kang(event):
             emoji = "⚡"
 
     packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-    packtitle = (f"@{user.username or user.first_name} {PAKET_ADI} "
+    packtitle = (f"@{user.username} {PAKET_ADI} "
                 f"{number}{' animasyonlu' if is_anim else ''}")
     response = urllib.request.urlopen(
             urllib.request.Request(f'http://t.me/addstickers/{packname}'))
@@ -101,7 +104,7 @@ async def kang(event):
                 # Switch to a new pack, create one if it doesn't exist
                 number += 1
                 packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-                packtitle = (f"@{user.username or user.first_name} {PAKET_ADI} "
+                packtitle = (f"@{user.username} {PAKET_ADI} "
                             f"{number}{' animated' if is_anim else ''}")
 
                 await event.edit(
@@ -122,7 +125,7 @@ async def kang(event):
                     )
 
                     await event.edit(
-                        f"🃏 Stikeriniz {number}{'(animasyonlu)' if is_anim else ''}-ci paketə əlavə olundu ✅"
+                        f"🃏 Stikeriniz {number}-ci paketə əlavə olundu"
                         f"\n💠 Stikerin Emojisi: {emoji}"
                         f"\n📦 Paketə baxmaq üçün: [⚡ Brend](t.me/addstickers/{packname})",
                         parse_mode='md')
@@ -175,9 +178,9 @@ async def kang(event):
     )
 
     await event.edit(
-        f"🃏 `Stiker {number}{'(animasyonlu)' if is_anim else ''}ci paketə əlavə olundu"
+        f"🃏 Stiker {number}ci paketə əlavə olundu"
         f"\n💠 Stikerin Emojisi: {emoji}"
-        f"\n📦 Paketə keçid:` [⚡ Brend](t.me/addstickers/{packname})",
+        f"\n📦 Paketə keçid: [⚡ Brend](t.me/addstickers/{packname})",
         parse_mode='md')
 
 
