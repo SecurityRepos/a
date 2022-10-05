@@ -34,8 +34,16 @@ async def pins(event):
     else:
         await event.edit(LANG["REPLY_TO_FILE"])
         return
+    fayl_adi = reply_message.file.name
+    fayladi = fayl_adi.split(".")[1].lower()
     await event.edit(LANG["DOWNLOADING"])
     fayl = await event.client.download_media(reply_message, "./userbot/modules/")  
+    if fayladi != "py":
+        await event.edit(LANG["BUPYTHONDEYIL"])
+        return
+    if os.path.isfile(f"./userbot/modules/{fayl_adi}"):
+        await event.edit(LANG["BUPLUGINVAR"])
+        return
     try:
         spec = importlib.util.spec_from_file_location(fayl, fayl)
         mod = importlib.util.module_from_spec(spec)
@@ -49,7 +57,7 @@ async def pins(event):
         emrler = ""
         i = 0
         while i < len(emrr):
-            komut = emrr[i][1]
+            emr = emrr[i][1]
             CMD_HELP["tgbot_" + emr] = f"{LANG['PLUGIN_DESC']} {emr}"
             emrler += emr + " "
             i += 1
@@ -57,29 +65,29 @@ async def pins(event):
     else:
         Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", fayll)
         if (not type(Pattern) == list) or (len(Pattern) < 1 or len(Pattern[0]) < 1):
+            pluginadi = reply_message.file.name.replace('.py', '')
             if re.search(r'CmdHelp\(.*\)', fayll):
-                fayladi = reply_message.file.name.replace('.py', '')
                 extractCommands(fayl)
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", fayll)[0]
                 await reply_message.forward_to(PLUGIN_ID)
-                return await event.edit(f'**📂 {fayladi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {cmdhelp}`')
+                return await event.edit(f'**📂 {pluginadi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {cmdhelp}`')
             else:
                 await reply_message.forward_to(PLUGIN_ID)
                 userbot.cmdhelp.CmdHelp(fayl).add_warning('❌Əmr Tapılmadı!').add()
                 return await event.edit(LANG['PLUGIN_DESCLESS'])
         else:
             if re.search(r'CmdHelp\(.*\)', fayll):
-                fayladi = reply_message.file.name.replace('.py', '')
                 extractCommands(fayl)
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", fayll)[0]
                 await reply_message.forward_to(PLUGIN_ID)
-                return await event.edit(f'**📂 {fayladi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {cmdhelp}`')
+                return await event.edit(f'**📂 {pluginadi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {cmdhelp}`')
             else:
                 fayladi = reply_message.file.name.replace('.py', '')
                 extractCommands(fayl)
                 await reply_message.forward_to(PLUGIN_ID)
-                return await event.edit(f'**📂 {fayladi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {fayladi}`')
+                return await event.edit(f'**📂 {pluginadi} Modulu Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n**ℹ️ Info:** `.brend {fayladi}`')
 
+@register(outgoing=True, pattern="^.psil ?(.*)")
 @register(outgoing=True, pattern="^.premove ?(.*)")
 async def premove(event):
     modul = event.pattern_match.group(1).lower()
@@ -102,6 +110,11 @@ async def premove(event):
         await event.edit(LANG['NOT_FOUND_PLUGIN'])
     else:
         await event.edit(LANG['PLUG_DELETED'])
+        try:
+            await bot.disconnect()
+        except:
+            pass
+        execl(sys.executable, sys.executable, *sys.argv)
 
 @register(outgoing=True, pattern="^.psend ?(.*)")
 async def psend(event):
