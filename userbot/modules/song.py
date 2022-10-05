@@ -8,7 +8,7 @@ from random import randint
 from userbot.cmdhelp import CmdHelp
 from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import ContentTooShortError, DownloadError, ExtractorError, GeoRestrictedError, MaxDownloadsReached, PostProcessingError, UnavailableVideoError, XAttrMetadataError
+from youtube_dl.utils import ExtractorError
 from youtube_search import YoutubeSearch
 from userbot.language import get_value
 LANG = get_value("song")
@@ -94,37 +94,9 @@ async def mahniyukle(event):
         await event.edit("🔄 Musiqi məlumatı əldə olunur...")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
-    except DownloadError as DE:
-        await event.edit(f"{DE}")
-        return
-    except ContentTooShortError:
-        await event.edit("😬 Endirmə məzmunu çox qısa idi.")
-        return
-    except GeoRestrictedError:
-        await event.edit("🥸 Olduğunuz ölkənin şəbəkəsində bu mahnı mövcud deyil bir veb sayt məhdudiyyət qoyub")
-        return
-    except MaxDownloadsReached:
-        await event.edit("☹️ Maksimum yükləmə limitinə çatıdınız.")
-        return
-    except PostProcessingError:
-        await event.edit("🙄 Musiqini hazırlayarkən xəta baş verdi")
-        return
-    except UnavailableVideoError:
-        await event.edit("🤦🏻‍♂️ İstədiyiniz mahnını musiqi formatında tapa bilmədim")
-        return
-    except XAttrMetadataError as XAME:
-        return await event.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-    except ExtractorError:
-        return await event.edit("❌ Musiqini yükləyərkən xəta baş verdi")
     except Exception as e:
-        return await event.edit(f"{str(type(e)): {str(e)}}")
-    dir = os.listdir()
-    if f"{rip_data['id']}.m4a.jpg" in dir:
-        thumb = f"{rip_data['id']}.m4a.jpg"
-    elif f"{rip_data['id']}.m4a.webp" in dir:
-        thumb = f"{rip_data['id']}.m4a.webp"
-    else:
-        thumb = "userbot/modules/sql_helper/resources/Brend_Logo.jpg"
+        return await event.edit(f"{e}")
+    thumb = "userbot/modules/sql_helper/resources/Brend_Logo.jpg"
     await event.edit(f"📥 Yüklənir...\n• 🎶 Mahnı: {rip_data['title']}\n• 📡 Kanal: {rip_data['uploader']}")
     CAPT = f"╰┈───────────────┈╮\n➥ 🎵 {rip_data['title']}\n➥ 📡 Kanal: {rip_data['uploader']}\n╭┈───────────────┈╯\n➥ 👤 Sahibim: {DEFAULT_NAME}\n╰┈───────────────┈➤"
     await event.delete()
@@ -143,10 +115,6 @@ async def mahniyukle(event):
         ],
     )
     os.remove(f"{rip_data['id']}.m4a")
-    try:
-        os.remove(thumb)
-    except BaseException:
-        pass
 
 @register(outgoing=True, pattern=r"^.lyrics (.*)")
 async def lyrics(event):
