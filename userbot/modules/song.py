@@ -56,8 +56,6 @@ async def deezl(event):
 @register(outgoing=True, pattern=r"^.song (.*)")
 async def mahniyukle(event):
     a = event.text
-    if len(a) >= 5 and a[5] == "s":
-        return
     await event.edit("🔎Musiqi axtarılır, xahiş edirəm bir az gözləyin...")
     url = event.pattern_match.group(1)
     if not url:
@@ -70,23 +68,12 @@ async def mahniyukle(event):
         return await event.edit("🤦🏻‍♂️ Mahnını tapa bilmirəm...")
     await event.edit(f"📥 Hazırdır Endirilir...")
     opts = {
-        "format": "bestaudio",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
+        "outtmpl": "%(title)s.m4a",
         "writethumbnail": True,
-        "prefer_ffmpeg": True,
+        "format": "bestaudio/best",
         "geo_bypass": True,
         "nocheckcertificate": True,
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "m4a",
-                "preferredquality": "320",
-            }
-        ],
-        "outtmpl": "%(id)s.m4a",
         "quiet": True,
-        "logtostderr": False,
     }
     try:
         await event.edit("🔄 Musiqi məlumatı əldə olunur...")
