@@ -263,7 +263,7 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@bot.on(NewMessage(outgoing=True, pattern="*(/)"))
+@register(outgoing=True, pattern="^.afk off"))
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
