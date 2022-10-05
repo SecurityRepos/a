@@ -23,7 +23,7 @@ def vaxtlar(seconds, short=True):
     tmp = ((str(days) + (" gün, " if not short else "g, ")) if days else "") + \
         ((str(hours) + (" saat, " if not short else "s, ")) if hours else "") + \
         ((str(minutes) + (" dəqiqə, " if not short else "d, ")) if minutes else "") + \
-        ((str(seconds) + (" saniyə, " if not short else "s, ")) if seconds else "")
+        ((str(seconds) + (" saniyə " if not short else "s, ")) if seconds else "")
     return tmp[:-2] + " əvvəl"
 
 @register(incoming=True, disable_errors=True, disable_edited=True)
@@ -61,7 +61,7 @@ async def mention_afk(mention):
                     ) \
                             + f"\n{LANG['REASON']}: `{AFKREASON}`\n")
                     else:
-                        msj = await mention.reply(PLUGIN_MESAJLAR['afk'])
+                        msj = await mention.reply(f"{PLUGIN_MESAJLAR['afk']}")
                         await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
                 else:
                     if not isinstance(PLUGIN_MESAJLAR['afk'], str):
@@ -74,7 +74,7 @@ async def mention_afk(mention):
                             last_seen=last_seen,
                             last_seen_long=last_seen_long
                         )
-                        await mention.reply(PLUGIN_MESAJLAR['afk'])
+                        await mention.reply(f"{PLUGIN_MESAJLAR['afk']}")
                     else:
                         await mention.reply(PLUGIN_MESAJLAR['afk'].format(
                             username=username,
@@ -115,7 +115,7 @@ async def mention_afk(mention):
                                 last_seen=last_seen,
                                 last_seen_long=last_seen_long
                             )
-                            await mention.reply(PLUGIN_MESAJLAR['afk'])
+                            await mention.reply(f"{PLUGIN_MESAJLAR['afk']}")
                         else:
                             await mention.reply(PLUGIN_MESAJLAR['afk'].format(
                                 username=username,
@@ -138,8 +138,7 @@ async def afk_on_pm(sender):
     global ISAFK
     global USERS
     global COUNT_MSG
-    if sender.is_private and sender.sender_id != 777000 and not (
-            await sender.get_sender()).bot:
+    if sender.is_private and sender.sender_id != 777000 and not (await sender.get_sender()).bot:
         if PM_AUTO_BAN:
             try:
                 from userbot.modules.sql_helper.pm_permit_sql import is_approved
@@ -264,15 +263,17 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@bot.on(NewMessage())
+@bot.on(NewMessage(outgoing=True, pattern="*(/)"))
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
     global USERS
     global AFKREASON
+    global SON_GORULME
+    hacan = SON_GORULME
     if ISAFK:
         ISAFK = False
-        await notafk.respond(LANG['IM_NOT_AFK'])
+        await notafk.respond(LANG['IM_NOT_AFK'].format(hacan))
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
