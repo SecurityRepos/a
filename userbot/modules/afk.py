@@ -270,7 +270,8 @@ async def type_afk_is_not_true(notafk):
     global USERS
     global AFKREASON
     global SON_GORULME
-    hacan = SON_GORULME
+    last_seen_seconds = round(time() - SON_GORULME)
+    hacan = vaxtlar(last_seen_seconds, False)
     if ISAFK:
         ISAFK = False
         await notafk.respond(LANG['IM_NOT_AFK'].format(hacan))
