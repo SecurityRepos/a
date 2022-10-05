@@ -24,7 +24,7 @@ def vaxtlar(seconds, short=True):
         ((str(hours) + (" saat, " if not short else "s, ")) if hours else "") + \
         ((str(minutes) + (" dəqiqə, " if not short else "d, ")) if minutes else "") + \
         ((str(seconds) + (" saniyə " if not short else "s, ")) if seconds else "")
-    return tmp[:-2] + " əvvəl"
+    return tmp
 
 @register(incoming=True, disable_errors=True, disable_edited=True)
 async def mention_afk(mention):
@@ -269,7 +269,6 @@ async def type_afk_is_not_true(notafk):
     global COUNT_MSG
     global USERS
     global AFKREASON
-    global SON_GORULME
     last_seen_seconds = round(time() - SON_GORULME)
     hacan = vaxtlar(last_seen_seconds, False)
     if ISAFK:
