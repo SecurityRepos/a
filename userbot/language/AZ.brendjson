@@ -105,22 +105,22 @@
         "afk": {
             "REASON": "ℹ️ Səbəb",
             "AFK": "🗣️ Sahibim indi Burda Deyil.",
-            "IM_AFK": "🤖 Hazırda AFK-yam.",
-            "IM_NOT_AFK": "✅ Sahibim geri qayıtdı."
+            "IM_AFK": "🤖 AFK Rejimi aktivdir.",
+            "IM_NOT_AFK": "🤡 {} aktiv olunan AFK Rejimi deaktiv edildi."
         },
 
         "auto": {
             "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `ad`, `bio`",
             "ALREADY": "`Hazırda %s onsuzda avtomatik olaraq dəyişir.`",
             "SETTING": "`%s nizamlanır...`",
-            "BIO": "📅 Tarix: {tarih} | ⌚️ Saat: {saat} | ",
+            "BIO": "📆 Tarix: {tarih} | 🕰️ Saat: {saat} | ",
             "NICK": "@BrendUserbot",
             "SETTED": "`%s nizamlandı :)`",
             "NAME": "✯%s✯"
         },
 
         "blacklist": {
-            "FORBIDDEN_KUFUR": "**Bu Qrupda mesaj silmək icazəm yoxdur. Söyüş filtri qoşulmadı.**",
+            "FORBIDDEN_KUFUR": "**Bu Qrupda mesaj silmək icazəm yoxdur. Söyüş filtri aktivləşdirilmədi.**",
             "HAVENT_PERMISSION": "Mesaj silmək icazəm yoxdur!",
             "USAGE_KUFUR": "`İstifadəsi: .küfür aç/bağla`",
             "OPENED_KUFUR": "`Söyüş filtri bu qrup üçün təsdiq edildi!`",
