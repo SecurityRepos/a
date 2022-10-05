@@ -103,10 +103,14 @@
         },
 
         "afk": {
+            "SANIYE": "saniyə",
+            "DEQIQE": "dəqiqə",
+            "SAAT": "saat",
+            "HEFTE": "həftə",
             "REASON": "ℹ️ Səbəb",
             "AFK": "🗣️ Sahibim indi Burda Deyil.",
             "IM_AFK": "🤖 AFK Rejimi aktivdir.",
-            "IM_NOT_AFK": "🤡 {} aktiv olunan AFK Rejimi deaktiv edildi."
+            "IM_NOT_AFK": "🤡 Sahibim gəldi AFK rejimi {} sonra deaktiv edildi."
         },
 
         "auto": {
