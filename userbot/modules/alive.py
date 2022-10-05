@@ -6,7 +6,7 @@ from userbot.events import register
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
-from userbot import CMD_HELP, ALIVE_NAME, BREND_VERSION, bot, SAHIB, WHITELIST
+from userbot import CMD_HELP, ALIVE_NAME, BREND_VERSION, bot, WHITELIST
 from userbot.language import get_value
 LANG = get_value("alives")
 
@@ -67,16 +67,15 @@ async def balive(balive):
     if balive.is_reply:
         cavab = await balive.get_reply_message()
         brend = await balive.client.get_entity(cavab.from_id)
-        if brend.id == SAHIB:
-            if SAHIB not in WHITELIST:
-                await balive.reply(LANG['ALIVE7'].format(ALIVE_NAME, BREND_VERSION))
+        if brend.id not in WHITELIST:
+            await balive.reply(LANG['ALIVE7'].format(ALIVE_NAME, BREND_VERSION))
 
-@register(sahib=True, pattern="^.calive(?: |$)(.*)")
+@register(sahib=True, pattern=".calive(?: |$)(.*)")
 async def dbalive(e):
   sebeb = e.pattern_match.group(1)
   await e.reply(f"{sebeb}")           
            
-@register(sahib=True, pattern="^.dalive$")
+@register(sahib=True, pattern=".dalive$")
 async def dalive(dalive):
   await dalive.reply("`ﾒ 𝙱𝚛彡𝚗𝚍 hər yerdə⚡️...`")                          
 
