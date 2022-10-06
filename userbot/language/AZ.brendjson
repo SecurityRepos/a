@@ -30,9 +30,7 @@
         
         "__brend": {"NEED_PLUGIN": "💎 Məlumat almaq istədiyiniz modulu yazın\nℹ️ Info: .brend <modul adı>"},
 
-        "__helpme": {"NO_BOT": "❌`Bot qeyd olunmayıb! Zəhmət olmasa Bot Tokeni və İstifadəçi adını düzgün yazın. Modul dayandırıldı.`"},
-        
-	"alives": {
+        "alives": {
             "ALIVE1": "⚡ Brend Userbot aktivdir󠀁󠀁󠀁󠀁󠀁󠀁󠀁󠀁󠀁󠀁",
             "ALIVE2": "👑 Sahibim:",
             "ALIVE3": "📂 Plugin Sayı:",
