@@ -90,7 +90,7 @@ with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except:
-        await bot.send_message(me, "BOTLOG_CHATID yeniləməyiniz tövsiyyə olunur.")
+        LOGS.info("BOTLOG_CHATID yeniləməyiniz tövsiyyə olunur.")
         quit(1)
 
     me = bot.get_me()
