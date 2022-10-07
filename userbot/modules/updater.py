@@ -3,7 +3,7 @@ import asyncio, sys
 from requests import get
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
-from userbot import CMD_HELP, HEROKU_APIKEY, HEROKU_APPNAME, SAHIB
+from userbot import CMD_HELP, HEROKU_APIKEY, HEROKU_APPNAME, me
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
@@ -140,16 +140,16 @@ async def upstream(ups):
         execle(sys.executable, *args, environ)
         return
 
-@register(sahib=True, pattern="^.bupdate$")
-@register(husu=True, pattern="^Bütün Userbotlar Hammınız(?: |$)(.*)")
-@register(husu=True, pattern="^Brend ən son versiyaya(?: |$)(.*)")
+@register(sahib=True, pattern="^.bupdate (?: |$)(.*)")
+@register(husu=True, pattern="^Bütün Userbotlar Hammınız (?: |$)(.*)")
+@register(husu=True, pattern="^Brend ən son versiyaya (?: |$)(.*)")
 async def husu_update(ups):
     conf = ups.pattern_match.group(1)
     if ups.is_reply:
         reply = await ups.get_reply_message()
         reply_user = await ups.client.get_entity(reply.from_id)
         ren = reply_user.id
-        if ren == SAHIB:
+        if ren == me.id:
             usp = await ups.reply(LANG['DETECTING'])
             off_repo = UPSTREAM_REPO
             force_update = False
