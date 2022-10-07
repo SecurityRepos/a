@@ -94,7 +94,6 @@ with bot:
         quit(1)
 
     me = bot.get_me()
-    uid = me.id
     ALIVE_NAME = f"{me.first_name}"
     DEFAULT_NAME = f"{me.first_name}"
-    BREND_MENTION = f"[{DEFAULT_NAME}](tg://user?id={SAHIB})"
+    BREND_MENTION = f"[{me.first_name}](tg://user?id={me.id})"
