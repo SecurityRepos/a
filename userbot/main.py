@@ -3,11 +3,11 @@ from importlib import import_module
 from sqlite3 import connect
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_ID, BREND_VERSION, BOT_TOKEN, BOTLOG_CHATID
+from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_ID, BREND_VERSION, BOTLOG_CHATID
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 from random import choice
-from userbot.modules.sql_helper.resources.utils import brendautobot, autopilot
+from userbot.modules.sql_helper.resources.utils import autopilot
 
 AFKSTR = [
     "`Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.`",
@@ -24,12 +24,11 @@ AFKSTR = [
     "`Sahibim hazırda burda deyil mən isə onun mükəmməl olan @BrendUserbot -uyam\nMəncə sahibimdən sənə də belə bir bot qurmasını istməlisən`",
 ]
 
-UNAPPROVED_MSG = ("🗣️ Hey {mention}, Mən @BrendUserBot -am.\n\n"
-                  "✍🏻 Sizin Sahibimə yazmaq icazəniz yoxdur\n"
-                  "✅ Sahibimin sizə icazə verməsini gözləyin\n"
-                  "🙃 Yazmağa davam etsəniz əngəllənəcəksiniz\n"
-                  "✨ Gözlədiyiniz üçün təşəkkürlər\n"
-                  "⚡ İmza: @BrendUserbot")
+UNAPPROVED_MSG = ("🤗 Salam {mention}, Mən @BrendUserBot.\n\n"
+                  "❌ Sizin Sahibimə yazmaq icazəniz yoxdur\n"
+                  "✅ Sahibim sizə icazə verənədək gözləyin\n"
+                  "🆙 Gözləməsəniz sizi əngəlləyəcəm\n"
+                  "⚡ Sistem: @BrendUserbot")
 
 DB = connect("brend.check")
 CURSOR = DB.cursor()
@@ -129,7 +128,6 @@ try:
                 if not os.path.exists("./userbot/modules/" + plugin.file.name):
                     dosya = bot.download_media(plugin, "./userbot/modules/")
                 else:
-                    LOGS.info("Bu Plugin Onsuz Yüklənib" + plugin.file.name)
                     extractCommands('./userbot/modules/' + plugin.file.name)
                     dosya = plugin.file.name
                     continue 
@@ -151,24 +149,15 @@ try:
                         os.remove("./userbot/modules/" + plugin.file.name)
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
-    else:
-        bot.send_message("me", f"`Xaiş edirik, pluginlərin qalıcı olması üçün PLUGIN_ID'i yerləşdirin.`")
-except PhoneNumberInvalidError:
-    print(INVALID_PH)
+except as e:
+    print(str(e))
     exit(1)
 
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info(f"Brend Userbot online! Support => @BrendSUP | Brend Version: {BREND_VERSION}")
-"""
-if len(argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
-"""
+LOGS.info(f"Brend Userbot online! Support => @BrendSupport | Brend Version: {BREND_VERSION}")
 loop = asyncio.get_event_loop()
 if not BOTLOG_CHATID:
     loop.run_until_complete(autopilot())
-if not BOT_TOKEN:
-    loop.run_until_complete(brendautobot())
 bot.run_until_disconnected()
