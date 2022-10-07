@@ -1,4 +1,4 @@
-from userbot import PATTERNS
+from userbot import PATTERNS, CMD_HELP
 
 class CmdHelp:
 
@@ -69,6 +69,10 @@ class CmdHelp:
                 result += f"**ℹ️ Haqqında:** `{command['usage']}`\n"
                 result += f"**⌨️ Nümunə:** `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
+
+    def add(self):
+        CMD_HELP[self.FILE] = self.get_result()
+        return True
 
     
     def getText(self, text : str):
