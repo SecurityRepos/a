@@ -34,9 +34,6 @@ DB = connect("brend.check")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
-INVALID_PH = '\nXƏTA: Daxil olunan telefon nömrəsi yanlışdır' \
-             '\n Kömək: Nömrəni ölkə kodu ilə daxil edin.' \
-             '\n    Telefon nömrənizi təkrar yoxlayın'
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
@@ -150,7 +147,7 @@ try:
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
 except:
-    print(f"{except"})
+    print(f"{except}")
     exit(1)
 
 for module_name in ALL_MODULES:
