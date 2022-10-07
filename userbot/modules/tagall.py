@@ -11,16 +11,19 @@ from userbot.main import PLUGIN_MESAJLAR
 from time import sleep
 from userbot.cmdhelp import CmdHelp
 
+muveqqeti_isleyen = []
 vaxt = int(PLUGIN_MESAJLAR['tagsleep'])
 
 @register(outgoing=True, groups_only=True, pattern="^.tagone(?: |$)(.*)")
 async def tagone(tag):
+    global muveqqeti_isleyen
     if tag.chat_id in SUP:
         return await tag.edit("**Mən Brend Support qrupunda tag başlada bilmərəm!!!**")
     if tag.pattern_match.group(1):
         seasons = tag.pattern_match.group(1)
     else:
         seasons = ""
+    muveqqeti_isleyen.append(tag.chat_id)
     chat = await tag.get_input_chat()
     a_=0
     await tag.delete()
@@ -30,7 +33,16 @@ async def tagone(tag):
         a_+=5
         await tag.client.send_message(tag.chat_id, "[{}](tg://user?id={}) {}".format(i.first_name, i.id, seasons))
         sleep(vaxt)
+    if tag.chat_id not in muveqqeti_isleyen:
+        await tag.respond("✅ Tək-tək tagger müvəffəqiyyətlə dayandırıldı")
+        return
 	
+@register(outgoing=True, groups_only=True, pattern="^.tagstop")
+async def cancel(tag):
+  global muveqqeti_isleyen
+  await event.delete()
+  muveqqeti_isleyen.remove(tag.chat_id)
+
 		
 @register(outgoing=True, groups_only=True, pattern="^.admins(?: |$)(.*)")
 async def _(tagadmin):
@@ -68,8 +80,7 @@ async def _(event):
     await event.delete()
 	
 
-emoji = " ♥️ ♠️ ♣️ 🎴 🃏 💸 💰 💎 🧨 💣 🛡 🔫 🔮 🚬 🎈 🎸🎲 🎭 🍾 🥂 🍻 🧃 🍯 🍭 " \
-  " 🍬 🎂 🍒 🍓 🍇 🔥 🌪 🥀 🌹 🌸 🐇 🦜 🦩 🐠 🐬 🐝 🐣".split(" ")
+emoji = " ♥️ ♠️ ♣️ 🎴 🃏 💸 💰 💎 🧨 💣 🛡 🔫 🔮 🚬 🎈 🎸🎲 🎭 🍾 🥂 🍻 🧃 🍯 🍭 🍬 🎂 🍒 🍓 🍇 🔥 🌪 🥀 🌹 🌸 🐇 🦜 🦩 🐠 🐬 🐝 🐣".split(" ")
 
 
 class FlagContainer:
@@ -116,10 +127,8 @@ async def m_fb(event):
     FlagContainer.is_active = False
 
 # ekme serefsiz
-# oğurlayanin anasini bacsıni sikim
-# ekenin varyoxunu onun boynunda sikim.
-
-muveqqeti_isleyen = []
+# oğurlayanin anasini bacsını sikim
+# ekenin varyoxunu onun boynunda sikim
 
 @register(outgoing=True, groups_only=True, pattern="^.tagall(?: |$)(.*)")
 async def tagall(event):
@@ -166,7 +175,7 @@ async def tagall(event):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in muveqqeti_isleyen:
-        await event.respond("❌Proses müvəffəqiyyətlə dayandırıldı")
+        await event.respond("⛔ 5-5 taglama prosesi müvəffəqiyyətlə dayandırıldı")
         return
       if usrnum == 5:
         await event.client.send_message(event.chat_id, usrtxt, reply_to=msg)
@@ -175,11 +184,13 @@ async def tagall(event):
         usrtxt = ""
 	
         
-@register(outgoing=True, groups_only=True, pattern="^.canceltag")
+@register(outgoing
+=True, groups_only=True, pattern="^.canceltag")
 async def cancel(event):
   global muveqqeti_isleyen
   await event.delete()
   muveqqeti_isleyen.remove(event.chat_id)
+
 
 
 @register(outgoing=True, pattern="^.tag(?: |$)(.*)")
