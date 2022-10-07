@@ -4,7 +4,7 @@
 
 import re, os, importlib, userbot.cmdhelp
 from telethon.tl.types import InputMessagesFilterDocument
-from userbot import CMD_HELP, bot, tgbot, PLUGIN_ID, PATTERNS
+from userbot import CMD_HELP, bot, PLUGIN_ID, PATTERNS
 from userbot.events import register
 from userbot.main import extractCommands
 from userbot.language import get_value
@@ -28,7 +28,7 @@ async def plist(event):
         await event.edit(LANG["TEMP_PLUGIN"])
 
 @register(outgoing=True, pattern="^.pinstall")
-async def pins(event):
+async def pinstall(event):
     if event.is_reply:
         reply_message = await event.get_reply_message()
     else:
