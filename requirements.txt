@@ -6,6 +6,7 @@ numpy
 pybase64
 pydub
 requests
+google_trans_new
 googletrans==4.0.0rc1
 sqlalchemy==1.3.23
 youtube_dl>=2021.2.10
