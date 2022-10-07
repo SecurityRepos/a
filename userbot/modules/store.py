@@ -1,7 +1,8 @@
-import os, importlib, re, userbot.cmdhelp
+import os, importlib, re
+from userbot.cmdhelp import CmdHelp
 from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register
-from userbot import BOT_USERNAME, PATTERNS, CMD_HELP, PLUGIN_ID, BREND_VERSION as bv
+from userbot import PATTERNS, CMD_HELP, PLUGIN_ID, BREND_VERSION as bv
 from random import choice, sample
 from userbot.main import extractCommands
 from userbot.language import get_value
@@ -93,7 +94,7 @@ async def sinstall(event):
                 await plugin.forward_to(PLUGIN_ID)
                 return await event.edit(f'**⚡ Brend Plugin Mağazası**\n💎 __Versiya {bv}__\n\n**✅ Modul yükləndi!**\n__ℹ️ Modulun əmrləri və istifadəsi haqqında məlumat əldə etmək üçün__ `.brend {dosyaAdi}` __yazın.__')
 
-userbot.cmdhelp.CmdHelp('store').add_command(
+CmdHelp('store').add_command(
     'store', '<söz>', 'Ən son Pluginləri Plugin kanalından gətirir. Sözlər yazsanız, axtarar.'
 ).add_command(
     'store random', '<say>', 'Pluginden kanalından təsadüfi pluginlər əldə edir.', 'store random 10'
