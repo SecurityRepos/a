@@ -149,8 +149,8 @@ try:
                         os.remove("./userbot/modules/" + plugin.file.name)
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
-except as e:
-    print(str(e))
+except:
+    print(f"{except"})
     exit(1)
 
 for module_name in ALL_MODULES:
