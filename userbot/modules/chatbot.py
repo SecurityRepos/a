@@ -1,7 +1,8 @@
 import requests
+from telethon import events
 from googletrans import Translator
 from telethon.tl.types import User
-from userbot import CMD_HELP, LOGS
+from userbot import CMD_HELP, LOGS, bot
 from userbot.events import register
 from userbot.modules.sql_helper.brend_chatbot_sql import brend, userbot, chatbot
 
@@ -44,7 +45,7 @@ async def on_off(event):
     await aktivlesme(event)
 
 
-@register(incoming=True, func=lambda e: (e.mentioned))
+@bot.on(events.NewMessage(incoming=True, func=lambda e: (e.mentioned)))
 async def tede_chatbot(event):
     sender = await event.get_sender()
     if not brend (event.chat_id):
