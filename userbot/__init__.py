@@ -6,16 +6,6 @@ from requests import get
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
-
-if CONSOLE_LOGGER_VERBOSE:
-    basicConfig(format="@BrendUserBot - %(levelname)s - %(message)s", level=DEBUG)
-else:
-    basicConfig(format="@BrendUserBot - %(levelname)s - %(message)s", level=INFO)
-LOGS = getLogger(__name__)
-
-if version_info[0] < 3 or version_info[1] < 8:
-    LOGS.info("Botun işləməsi üçün ən az python 3.8 versiyanız olmalıdır.")
-    quit(1)
     
 BREND_VERSION = "v5"
 API_ID = int(os.environ.get("API_KEY", "1558926"))
@@ -35,6 +25,7 @@ HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
 HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 DB_URI = os.environ.get("DATABASE_URL", "sqlite:///brend.db")
 
+CMD_HELP = []
 WARN_LIMIT = int(os.environ.get("WARN_LIMIT", 3))
 WARN_MODE = os.environ.get("WARN_MODE", "gmute")
 if not WARN_MODE in ["gmute", "gban"]:
@@ -53,6 +44,16 @@ WHITELIST = get('https://gitlab.com/brenduserbot/brend-userbot/-/raw/master/whit
 SUPPORT = get('https://gitlab.com/brenduserbot/brend-userbot/-/raw/master/support.json').json()
 HUSU = get('https://gitlab.com/brenduserbot/brend-userbot/-/raw/master/husu.json').json()
 SUP = [-1001197418406]
+
+if CONSOLE_LOGGER_VERBOSE:
+    basicConfig(format="@BrendUserBot - %(levelname)s - %(message)s", level=DEBUG)
+else:
+    basicConfig(format="@BrendUserBot - %(levelname)s - %(message)s", level=INFO)
+LOGS = getLogger(__name__)
+
+if version_info[0] < 3 or version_info[1] < 8:
+    LOGS.info("Botun işləməsi üçün ən az python 3.8 versiyanız olmalıdır.")
+    quit(1)
 
 if STRING_SESSION:
     bot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
@@ -76,7 +77,7 @@ async def check_botlog_chatid():
         return
     entity = await bot.get_entity(BOTLOG_CHATID)
     if entity.default_banned_rights.send_messages:
-        await bot.send_message(me, "Hesabınızla BOTLOG qrupuna mesaj göndərmək olmur./nQrup ID-sini düzgün yazdığınızdan əmin olun.")
+        await bot.send_message(me, "Hesabınızla BOTLOG qrupuna mesaj göndərmək olmur./nQrup ID-sini düzgünlüyündən əmin olun.")
         quit(1)
 
 
@@ -86,15 +87,14 @@ with bot:
         bot(JoinChannelRequest("@BrendSupport"))
     except:
         pass
+    try:
+        bot.loop.run_until_complete(check_botlog_chatid())
+    except:
+        await bot.send_message(me, "BOTLOG_CHATID yeniləməyiniz tövsiyyə olunur.")
+        quit(1)
 
     me = bot.get_me()
     uid = me.id
     ALIVE_NAME = f"{me.first_name}"
     DEFAULT_NAME = f"{me.first_name}"
     BREND_MENTION = f"[{DEFAULT_NAME}](tg://user?id={SAHIB})"
-
-    try:
-        bot.loop.run_until_complete(check_botlog_chatid())
-    except:
-        LOGS.info("BOTLOG_CHATID yeniləməyiniz tövsiyyə olunur.")
-        quit(1)
