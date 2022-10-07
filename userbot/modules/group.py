@@ -1,6 +1,6 @@
 from userbot.events import register
 from telethon import events
-from userbot import CMD_HELP, bot, SAHIB, LOGS, CLEAN_WELCOME, BOTLOG_CHATID, WHITELIST
+from userbot import CMD_HELP, bot, me, LOGS, CLEAN_WELCOME, BOTLOG_CHATID, WHITELIST
 from telethon.events import NewMessage
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.events import ChatAction
@@ -293,7 +293,7 @@ async def del_goodbye(event):
     try:
         from userbot.modules.sql_helper.goodbye_sql import rm_goodbye_setting
     except:
-        await event.edit("`SQL dışı modda işləyir!`")
+        await event.edit("`SQL olmayan modda işləyir!`")
         return
     if rm_goodbye_setting(event.chat_id) is True:
         await event.edit("`Yola salma mesajı bu söhbət üçün silindi.`")
@@ -315,10 +315,8 @@ async def qosul(e):
 async def xosgeldik(event):
     if event.user_joined:
         if event.user.id in WHITELIST:
-            if SAHIB in WHITELIST:
-                return
-            else:
-                await event.reply('⚡️𝗕𝗿𝗲𝗻𝗱𝗨𝘀𝗲𝗿𝗕𝗼𝘁 𝘀𝗮𝗵𝗶𝗯𝗶 𝗾𝗿𝘂𝗽𝗮 𝗾𝗮𝘁ı𝗹𝗱ı, 𝘅𝗼ş 𝗴ə𝗹𝗱𝗶𝗻')    
+            if me.id not in WHITELIST:
+                await event.reply(f'⚡️𝗕𝗿𝗲𝗻𝗱𝗨𝘀𝗲𝗿𝗕𝗼𝘁 𝘀𝗮𝗵𝗶𝗯𝗶 [{event.user.first_name}] 𝗾𝗿𝘂𝗽𝗮 𝗾𝗮𝘁ı𝗹𝗱ı, 𝘅𝗼ş 𝗴ə𝗹𝗱𝗶𝗻')    
 
         
       
