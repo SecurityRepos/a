@@ -40,7 +40,7 @@ async def tagone(tag):
 @register(outgoing=True, groups_only=True, pattern="^.tagstop")
 async def cancel(tag):
   global muveqqeti_isleyen
-  await event.delete()
+  await tag.delete()
   muveqqeti_isleyen.remove(tag.chat_id)
 
 		
