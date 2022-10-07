@@ -2,7 +2,7 @@ from asyncio import sleep
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.errors import rpcbaseerrors
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, uid, DEFAULT_NAME
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, me
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 from userbot.main import PLUGIN_MESAJLAR
@@ -203,7 +203,7 @@ async def chatid(e):
                 name = "Yoxdur"
         await e.edit(f"{LANG['NAME']} **{message.sender.first_name}\n{LANG['USERNAME']} {name}\n{LANG['ID']}** `{user_id}`")
     else: 
-        await e.edit(f"{LANG['NAME']} **{DEFAULT_NAME}\n{LANG['ID']}** {uid}\n{LANG['GROUP']} `{e.chat_id}`")
+        await e.edit(f"{LANG['NAME']} **{me.first_name}\n{LANG['ID']}** {me.id}\n{LANG['GROUP']} `{e.chat_id}`")
 
 
 @register(outgoing=True, pattern="^.link(?: |$)(.*)")
