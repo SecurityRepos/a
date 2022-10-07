@@ -146,7 +146,7 @@ try:
                         os.remove("./userbot/modules/" + plugin.file.name)
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
-except Exception as e::
+except Exception as e:
     print(f"{e}")
     exit(1)
 
