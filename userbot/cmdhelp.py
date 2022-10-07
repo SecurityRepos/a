@@ -1,4 +1,4 @@
-from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT
+from userbot import PATTERNS
 
 class CmdHelp:
 
@@ -29,7 +29,6 @@ class CmdHelp:
         return self
         
     def add_command(self, command : str, params = None, usage: str = '', example = None):
-        
         self.COMMANDS[command] = {'command': command, 'params': params, 'usage': usage, 'example': example}
         return self
     
@@ -45,9 +44,9 @@ class CmdHelp:
 
         result = f"**📂 Fayl:** `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
-            result += f"**✅ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
+            result += f"**🌐 Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
-            result += f"**✅ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
+            result += f"**🌐 Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
             
             if self.INFO == '':
                 if not self.WARNING == '':
@@ -71,14 +70,10 @@ class CmdHelp:
                 result += f"**⌨️ Nümunə:** `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
 
-    def add(self):
-        CMD_HELP_BOT[self.FILE] = {'info': {'official': self.IS_OFFICIAL, 'warning': self.WARNING, 'info': self.INFO}, 'commands': self.COMMANDS}
-        CMD_HELP[self.FILE] = self.get_result()
-        return True
     
     def getText(self, text : str):
         if text == 'REPLY_OR_USERNAME':
-            return '<istifadəçi adı> <şəxsi ad/cavablama>'
+            return '<istifadəçi adı> <cavablama>'
         elif text == 'OR':
             return 'və ya'
         elif text == 'USERNAMES':
