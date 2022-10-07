@@ -10,18 +10,18 @@ from random import choice
 from userbot.modules.sql_helper.resources.utils import autobotlog
 
 AFKSTR = [
-    "`Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.`",
-    "`Yazdığınız şəxs hal-hazırda mesajınıza cavab vermir.\nXaiş edirik biraz sonra mesaj yazın!`",
-    "`Bir neçə dəqiqədən sonra gələcəm. Ancaq gəlməsəm ...\ndaha çox gözləyin.`",
-    "`Mən indi burada deyiləm, yəqin ki, başqa bir yerdəyəm`.\n",
-    "`Getsən gedirsənsə sevgili yar amma unutma.\nBirazdan gələcəm`",
-    "`Bəzən həyatda ən yaxşı şeylər gözləməyə dəyər…\nSəndə mənim gəlməyimi gözlə.`",
-    "`Dərsə gedən bir uşaq yıxıldı buz üstə. Sonrada durub yoluna davam elədi.\nSahibim burda deyil amma istəsən mən səninlə söhbət edə bilərəm.`",
-    "`Sahibim burda yoxdu mənə dediki sevgilisinnən bezib və yeni bir sevgili tapmağa gedir`",
-    "`Xahiş edirəm bir mesaj yazın və o mesaj məni indi olduğumdan daha dəyərli hiss etdirsin.`",
-    "`Burda olsaydım,\nSizə harada olduğumu deyərdim.\n\nAmma mən deyiləm,\nqayıdanda məndən soruş...`",
-    "`Həyat çox qısadır, edilə bilinəcək çox şey var...\nOnlardan birini edirəm...`",
-    "`Sahibim hazırda burda deyil mən isə onun mükəmməl olan @BrendUserbot -uyam\nMəncə sahibimdən sənə də belə bir bot qurmasını istməlisən`",
+    "Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.",
+    "Yazdığınız şəxs hal-hazırda mesajınıza cavab vermir.\nXaiş edirik biraz sonra mesaj yazın!",
+    "Bir neçə dəqiqədən sonra gələcəm. Ancaq gəlməsəm ...\ndaha çox gözləyin.",
+    "Mən indi burada deyiləm, yəqin ki, başqa bir yerdəyəm.\n",
+    "Getsən gedirsənsə sevgili yar amma unutma.\nBirazdan gələcəm",
+    "Bəzən həyatda ən yaxşı şeylər gözləməyə dəyər…\nSəndə mənim gəlməyimi gözlə.",
+    "Dərsə gedən bir uşaq yıxıldı buz üstə. Sonrada durub yoluna davam elədi.\nSahibim burda deyil.",
+    "Sahibim burda yoxdu mənə dediki sevgilisinnən bezib və yeni bir sevgili tapmağa gedir",
+    "Xahiş edirəm bir mesaj yazın və o mesaj məni indi olduğumdan daha dəyərli hiss etdirsin.",
+    "Burda olsaydım,\nSizə harada olduğumu deyərdim.\n\nAmma bu mən deyiləm,\nqayıdanda məndən soruş...",
+    "Həyat çox qısadır, edilə bilinəcək çox şey var...\nOnlardan birini edirəm...",
+    "Sahibim hazırda burda deyil mən isə mükəmməl olan @BrendUserbot'am\nMəncə sahibimdən sənə də belə bir bot qurmasını istməlisən",
 ]
 
 UNAPPROVED_MSG = ("🤗 Salam {mention}, Mən @BrendUserBot.\n\n"
@@ -146,8 +146,8 @@ try:
                         os.remove("./userbot/modules/" + plugin.file.name)
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
-except:
-    print(f"{except}")
+except Exception as e::
+    print(f"{e}")
     exit(1)
 
 for module_name in ALL_MODULES:
