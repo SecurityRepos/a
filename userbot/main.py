@@ -7,7 +7,7 @@ from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_ID, BREND_VERSION, BOTLOG_CHATID
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 from random import choice
-from userbot.modules.sql_helper.resources.utils import autopilot
+from userbot.modules.sql_helper.resources.utils import autobotlog
 
 AFKSTR = [
     "`Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.`",
@@ -159,5 +159,5 @@ for module_name in ALL_MODULES:
 LOGS.info(f"Brend Userbot online! Support => @BrendSupport | Brend Version: {BREND_VERSION}")
 loop = asyncio.get_event_loop()
 if not BOTLOG_CHATID:
-    loop.run_until_complete(autopilot())
+    loop.run_until_complete(autobotlog())
 bot.run_until_disconnected()
