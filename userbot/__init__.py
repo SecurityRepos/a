@@ -25,7 +25,7 @@ HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
 HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 DB_URI = os.environ.get("DATABASE_URL", "sqlite:///brend.db")
 
-CMD_HELP = []
+CMD_HELP = {}
 WARN_LIMIT = int(os.environ.get("WARN_LIMIT", 3))
 WARN_MODE = os.environ.get("WARN_MODE", "gmute")
 if not WARN_MODE in ["gmute", "gban"]:
