@@ -4,6 +4,10 @@
     "LANGCODE": "AZ",
     "AUTHOR": "t.me/BrendOwner",
     "STRINGS": {
+        "main": {
+            "IM_NOT_AFK": "🤡 Sahibim gəldi AFK rejimi {} sonra deaktiv edildi."
+        },
+
         "__plugin": {
             "DOWNLOADING": "`📥 Modul Yüklənir...`",
             "PLIST_CHECKING": "🔎`Pluginlərin siyahısı gətirilir...`",
