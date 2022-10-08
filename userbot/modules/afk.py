@@ -263,7 +263,7 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@register(outgoing=True, pattern="^(?: a-z|$)(0-9.*)")
+@register(outgoing=True, pattern="(^.*[a-zA-Z0-9şğüöçıə]\w)")
 async def type_afk_is_not_true(notafk):
     global ISAFK
     global COUNT_MSG
