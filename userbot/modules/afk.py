@@ -272,7 +272,7 @@ async def type_afk_is_not_true(notafk):
     hacan = vaxtlar(last_seen_seconds, False)
     if ISAFK:
         ISAFK = False
-        me = await e.client.get_me()
+        me = await notafk.client.get_me()
         if type(PLUGIN_MESAJLAR['alive']) == str:
             await notafk.respond(PLUGIN_MESAJLAR['unafk'].format(
                 username='@' + me.username if me.username else f'[{me.first_name}](tg://user?id={me.id})',
