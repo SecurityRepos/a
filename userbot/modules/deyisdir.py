@@ -11,7 +11,6 @@ LANG = get_value("degistir")
 @register(outgoing=True, pattern="^.d[eə]yi[sş]dir ?(.*)")
 async def deyisdir(event):
     plugin = event.pattern_match.group(1)
-    yenimsj = event.pattern_match.group(2)
     mesaj = re.search(r"\"(.*)\"", plugin)
     if mesaj:
         rege = re.findall(r"(?:|$)(.*)\"(.*)\"", plugin)
@@ -33,10 +32,10 @@ async def deyisdir(event):
                 PLUGIN_MESAJLAR[plugin] = reply.text
                 sql.ekle_mesaj(plugin, reply.text)
                 return await event.edit(f"🆕 {plugin} {LANG['SETTED_REPLY']} {reply.text}")   
-            if yenimsj:
+            """if yenimsj:
                 PLUGIN_MESAJLAR[plugin] = yenimsj
                 sql.ekle_mesaj(plugin, yenimsj)
-                return await event.edit(f"🆕 {plugin} {LANG['SETTED_REPLY']} {yenimsj}")
+                return await event.edit(f"🆕 {plugin} {LANG['SETTED_REPLY']} {yenimsj}")"""
 
             silme = sql.sil_mesaj(plugin)
             if silme == True:
