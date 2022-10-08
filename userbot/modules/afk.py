@@ -1,11 +1,10 @@
 from random import randint
 from asyncio import sleep
 from telethon.events import StopPropagation, NewMessage
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN, bot
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from time import time
-from userbot import bot
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
 LANG = get_value("afk")
@@ -273,8 +272,15 @@ async def type_afk_is_not_true(notafk):
     hacan = vaxtlar(last_seen_seconds, False)
     if ISAFK:
         ISAFK = False
-        await notafk.respond(PLUGIN_MESAJLAR['unafk'])
-        await sleep(2)
+        me = await e.client.get_me()
+        if type(PLUGIN_MESAJLAR['alive']) == str:
+            await notafk.respond(PLUGIN_MESAJLAR['unafk'].format(
+                username='@' + me.username if me.username else f'[{me.first_name}](tg://user?id={me.id})',
+                first_name=me.first_name,
+                last_name=me.last_name if me.last_name else '',
+                mention=f'[{me.first_name}](tg://user?id={me.id})',
+                time=hacan
+        ))
         if BOTLOG:
             await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
             for i in USERS:
