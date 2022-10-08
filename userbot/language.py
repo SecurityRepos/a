@@ -2,40 +2,12 @@
 # t.me/BrendOwner tərəfindən xəta düzəldilmişdir
 # Baxıb öyrənərsən))
 
-from . import LANGUAGE, LOGS, bot, PLUGIN_ID
+from . import LANGUAGE, LOGS, bot
 from json import loads, JSONDecodeError
 from os import path, remove
 from telethon.tl.types import InputMessagesFilterDocument
 
-pchannel = bot.get_entity(PLUGIN_ID)
 LANGUAGE_JSON = None
-
-for dil in bot.iter_messages(pchannel, filter=InputMessagesFilterDocument):
-    if ((len(dil.file.name.split(".")) >= 2) and (dil.file.name.split(".")[1] == "brendjson")):
-        if path.isfile(f"./userbot/language/{dil.file.name}"):
-            try:
-                LANGUAGE_JSON = loads(open(f"./userbot/language/{dil.file.name}", "r").read())
-            except JSONDecodeError:
-                dil.delete()
-                remove(f"./userbot/language/{dil.file.name}")
-
-                if path.isfile("./userbot/language/DEFAULT.brendjson"):
-                    LOGS.warn("Defolt dil dil faylı istifadə olunur...")
-                    LANGUAGE_JSON = loads(open(f"./userbot/language/DEFAULT.brendjson", "r").read())
-                else:
-                    raise Exception("Your language file is invalid")
-        else:
-            try:
-                DOSYA = dil.download_media(file="./userbot/language/")
-                LANGUAGE_JSON = loads(open(DOSYA, "r").read())
-            except JSONDecodeError:
-                dil.delete()
-                if path.isfile("./userbot/language/DEFAULT.brendjson"):
-                    LOGS.warn("Defolt dil faylı istifadə olunur...")
-                    LANGUAGE_JSON = loads(open(f"./userbot/language/DEFAULT.brendjson", "r").read())
-                else:
-                    raise Exception("Your language file is invalid")
-        break
 
 if LANGUAGE_JSON == None:
     if path.isfile(f"./userbot/language/{LANGUAGE}.brendjson"):
