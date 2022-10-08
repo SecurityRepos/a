@@ -8,6 +8,8 @@ from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 from random import choice
 from userbot.modules.sql_helper.resources.utils import autobotlog
+from userbot.language import get_string
+LANG = get_string("main")
 
 AFKSTR = [
     "Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.",
@@ -28,7 +30,7 @@ UNAPPROVED_MSG = ("🤗 Salam {mention}, Mən @BrendUserBot.\n\n"
                   "❌ Sizin Sahibimə yazmaq icazəniz yoxdur\n"
                   "✅ Sahibim sizə icazə verənədək gözləyin\n"
                   "🆙 Gözləməsəniz sizi əngəlləyəcəm\n"
-                  "⚡ Sistem: @BrendUserbot")
+                  "⚡ @BrendUserbot")
 
 DB = connect("brend.check")
 CURSOR = DB.cursor()
@@ -98,7 +100,7 @@ try:
         bot.disconnect()
 
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`⚡️ 𝙱​𝚛彡𝚗𝚍​ UserBot online...`", "alives": f"https://telegra.ph/file/d61b9172fc143fdfc86a2.gif", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Özünüzdən muğayat olun mən gedirəm🤠`", "pm": UNAPPROVED_MSG, "dızcı": "Stiket Brend Paketinə əlavə olunur", "ban": "**{mention}** `qadağan edildi!`", "mute": "**{mention}** `səssizə alındı`", "approve": "**{mention}** `mənə mesaj göndərə bilərsən!`", "tagsleep": "3", "disapprove": "{mention} **Bundan sonra mənə mesaj göndərə bilməzsən!**", "block": "**{mention}** `əngəlləndin!`"}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`⚡️ 𝙱​𝚛彡𝚗𝚍​ UserBot online...`", "alives": f"https://telegra.ph/file/d61b9172fc143fdfc86a2.gif", "afk": f"`{str(choice(AFKSTR))}`", "unafk": LANG['IM_NOT_AFK'].format(hacan), "kickme": "`Özünüzdən muğayat olun mən gedirəm🤠`", "pm": UNAPPROVED_MSG, "dızcı": "Stiket Brend Paketinə əlavə olunur", "ban": "**{mention}** `qadağan edildi!`", "mute": "**{mention}** `səssizə alındı`", "approve": "**{mention}** `mənə mesaj göndərə bilərsən!`", "tagsleep": "3", "disapprove": "{mention} **Bundan sonra mənə mesaj göndərə bilməzsən!**", "block": "**{mention}** `əngəlləndin!`"}
 
     PLUGIN_MESAJLAR_NOVLER = ["alive", "alives", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "tagsleep", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_NOVLER:
