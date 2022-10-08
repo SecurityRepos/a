@@ -5,7 +5,7 @@
     "AUTHOR": "t.me/BrendOwner",
     "STRINGS": {
         "main": {
-            "IM_NOT_AFK": "🤡 Sahibim gəldi AFK rejimi {} sonra deaktiv edildi."
+            "IM_NOT_AFK": "🤡 Sahibim gəldi AFK rejimi {time} sonra deaktiv edildi."
         },
 
         "__plugin": {
