@@ -36,7 +36,7 @@ async def deyisdir(event):
             if yenimsj:
                 PLUGIN_MESAJLAR[plugin] = yenimsj
                 sql.ekle_mesaj(plugin, yenimsj)
-                return await event.edit(f"🆕 {plugin} {LANG['SETTED_REPLY'] {yenimsj}}")
+                return await event.edit(f"🆕 {plugin} {LANG['SETTED_REPLY']} {yenimsj}")
 
             silme = sql.sil_mesaj(plugin)
             if silme == True:
