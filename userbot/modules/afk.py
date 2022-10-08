@@ -273,7 +273,7 @@ async def type_afk_is_not_true(notafk):
     hacan = vaxtlar(last_seen_seconds, False)
     if ISAFK:
         ISAFK = False
-        await notafk.respond(LANG['IM_NOT_AFK'].format(hacan))
+        await notafk.respond(PLUGIN_MESAJLAR['unafk'])
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
