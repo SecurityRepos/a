@@ -8,8 +8,8 @@ from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 from random import choice
 from userbot.modules.sql_helper.resources.utils import autobotlog
-from userbot.language import get_string
-LANG = get_string("main")
+from userbot.language import get_value
+LANG = get_value("main")
 
 AFKSTR = [
     "Mən indi tələsirəm, daha sonra bir mesaj göndərə bilməzsən?😬\nOnsuz da yenə gələcəm.",
