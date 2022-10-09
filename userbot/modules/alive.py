@@ -64,7 +64,7 @@ async def brendalives(alive):
 
 @register(support=True, pattern="^.balive$")
 async def balive(balive):
-    b = balive.client.get_me():
+    b = balive.client.get_me()
     if balive.is_reply:
         cavab = await balive.get_reply_message()
         brend = await balive.client.get_entity(cavab.from_id)
