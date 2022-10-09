@@ -64,11 +64,13 @@ async def brendalives(alive):
 
 @register(support=True, pattern="^.balive$")
 async def balive(balive):
+    b = balive.client.get_me():
     if balive.is_reply:
         cavab = await balive.get_reply_message()
         brend = await balive.client.get_entity(cavab.from_id)
-        if brend.id not in WHITELIST:
-            await balive.reply(LANG['ALIVE7'].format(ALIVE_NAME, BREND_VERSION))
+        if brend.id == b.id:
+            if brend.id not in WHITELIST:
+                await balive.reply(LANG['ALIVE7'].format(ALIVE_NAME, BREND_VERSION))
 
 @register(sahib=True, pattern=".calive(?: |$)(.*)")
 async def dbalive(e):
