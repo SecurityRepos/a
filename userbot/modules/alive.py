@@ -79,6 +79,6 @@ async def dbalive(e):
            
 @register(sahib=True, pattern=".dalive$")
 async def dalive(dalive):
-  await dalive.reply("`ﾒ 𝙱𝚛彡𝚗𝚍 hər yerdə⚡️...`")                          
+  await dalive.reply(LANG['ALIVE8'])                          
 
 CmdHelp('alive').add_command('alive', None, 'Userbotun Aktivliyini yoxlamaq üçün.').add_command('alives', None, 'Medialı aktivlik yoxlanması.').add()
