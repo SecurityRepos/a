@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://telegra.ph/file/eb135ce7993786cc39beb.jpg" width="300" height="300">
-  <h1>Brend Userbot</h1>
+  <h1>Brend User Bot</h1>
 </div>
 <p align="center">
     Brend 𝑈𝑠𝑒𝑟𝐵𝑜𝑡, 𝑇𝑒𝑙𝑒𝑔𝑟𝑎𝑚ı daha sadə və funksional hala gətirmək üçün sizin xidmətinizdədir. Userbotun qurulumu tamamı ilə pulsuzdur. <br>
