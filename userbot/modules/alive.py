@@ -69,7 +69,7 @@ async def balive(balive):
         cavab = await balive.get_reply_message()
         brend = await balive.client.get_entity(cavab.from_id)
         if brend.id == b.id:
-            if brend.id not in WHITELIST:
+            if b.id not in WHITELIST:
                 await balive.reply(LANG['ALIVE7'].format(ALIVE_NAME, BREND_VERSION))
 
 @register(sahib=True, pattern=".calive(?: |$)(.*)")
