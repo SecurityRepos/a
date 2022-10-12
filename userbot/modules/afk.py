@@ -19,10 +19,10 @@ def vaxtlar(seconds, short=True):
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + (" gün, " if not short else "g, ")) if days else "") + \
-        ((str(hours) + (" saat, " if not short else "s, ")) if hours else "") + \
-        ((str(minutes) + (" dəqiqə, " if not short else "d, ")) if minutes else "") + \
-        ((str(seconds) + (" saniyə " if not short else "s, ")) if seconds else "")
+    tmp = ((str(days) + (LANG['GUN'] if not short else "g, ")) if days else "") + \
+        ((str(hours) + (LANG['SAAT'] if not short else "s, ")) if hours else "") + \
+        ((str(minutes) + (LANG['DEQIQE'] if not short else "d, ")) if minutes else "") + \
+        ((str(seconds) + (LANG['SANIYE'] if not short else "s, ")) if seconds else "")
     return tmp
 
 @register(incoming=True, disable_errors=True, disable_edited=True)
@@ -257,7 +257,7 @@ async def set_afk(afk_e):
         await afk_e.edit(LANG['IM_AFK'])
     SON_GORULME = time()
     if BOTLOG:
-        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nAFK oldunuz.")
+        await afk_e.client.send_message(BOTLOG_CHATID, LANG['AFK_BOTLOG_1'])
     ISAFK = True
     raise StopPropagation
 
@@ -282,11 +282,11 @@ async def type_afk_is_not_true(notafk):
                 time=hacan
         ))
         if BOTLOG:
-            await notafk.client.send_message(BOTLOG_CHATID, f"Siz AFK olarkən {len(USERS)} nəfər sizə {COUNT_MSG} mesaj göndərdi.",)
+            await notafk.client.send_message(BOTLOG_CHATID, f"{LANG['AFK_BOTLOG_2']}")
             for i in USERS:
                 name = await notafk.client.get_entity(i)
                 name0 = "name.first_name"
-                await notafk.client.send_message(BOTLOG_CHATID, f"[{name0}](tg://user?id=i) sizə {USERS[i]} mesaj göndərdi")
+                await notafk.client.send_message(BOTLOG_CHATID, f"{LANG['AFK_BOTLOG_3']}")
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
