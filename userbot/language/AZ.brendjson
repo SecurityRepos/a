@@ -42,7 +42,7 @@
             "ALIVE5": "💻 Telethon Versiyası:",
             "ALIVE6": "🤖 Brend Versiyası:",
             "ALIVE7": "**👑 Sahibim Brend Userbot işlədir\n\n🤴🏻 Sahibim: {}\n⚡ Brend Userbot Versiyası: {}**",
-            "ALIVE8": "**✅ Brend userbot {} üçün quruldu və istifadəyə hazırdır.**"
+            "ALIVE8": "`ﾒ 𝙱𝚛彡𝚗𝚍 hər yerdə⚡️...`"
         },
 
         "admin": {
@@ -114,7 +114,8 @@
             "REASON": "ℹ️ Səbəb",
             "AFK": "🗣️ Sahibim indi Burda Deyil.",
             "IM_AFK": "🤖 AFK Rejimi aktivdir.",
-            "IM_NOT_AFK": "🤡 Sahibim gəldi AFK rejimi {time} sonra deaktiv edildi."
+            "AFK_CMD1": '<İstəyə bağlı səbəb>',
+            "AFK_CMD2": 'AFK olduğunuzu bildirər. Kimsə sizi axtararsa afk olduğunuzu və səbəbinizi çatdırar. Hər hansı bir yerə mesaj yazdıqda afk modu deaktiv olar.'
         },
 
         "auto": {
