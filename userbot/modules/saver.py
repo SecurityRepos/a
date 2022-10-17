@@ -13,10 +13,10 @@ async def _(event):
         return
     d_link = event.pattern_match.group(1)
     if ".com" not in d_link:
-        await event.edit('['LANG'] [SAVER_1]')
+        await event.edit(['LANG'] ['SAVER_1'])
     else:
-        await event.edit('[LANG]')
-    chat = "@ttsavebot"
+        await event.edit(['LANG'] ['SAVER_2'])
+    chat = "@saveasbot"
     async with event.client.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -27,7 +27,7 @@ async def _(event):
             """ - don't spam notif - """
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("`Xahiş edirəm` @ttsavebot `blokdan çıxarıb yenidən yoxlayın`")
+            await event.edit(['LANG'] ['SAVER_3'])
             return
         await event.client.send_file(event.chat_id, video ,caption=f"[ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ⚡️](t.me/BrendUserBot)`ilə yükləndi`")
         await event.client.delete_messages(conv.chat_id,
@@ -39,18 +39,18 @@ async def insta(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.edit("`Bir linkə cavab ver`")
+        await event.edit(['LANG') ['SAVER_4'])
         return
     reply_message = await event.get_reply_message()
     if not reply_message.text:
-        await event.edit("`Düzgün bir link ver`")
+        await event.edit(['LANG'] ['SAVER_5'])
         return
     chat = "@SaveAsBot"
     reply_message.sender
     if reply_message.sender.bot:
-        await event.edit("`Yükləməyim üçün instagram linkinə ehtiyacım var..`")
+        await event.edit(['LANG'] [SAVER_6])
         return
-    await event.edit('`BrendUserBot tərəfindən yüklənir⚡️`')
+    await event.edit(['LANG'] ['SAVER_7'])
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -59,11 +59,11 @@ async def insta(event):
             await event.client.send_message(chat, reply_message)
             response = await response
         except YouBlockedUserError:
-            await event.edit("`Xahiş olunur @SaveAsBot`u blokdan çıxarıb yenidən yoxlayın`")
+            await event.edit(['LANG'] ['SAVER_8'])
             return
         if response.text.startswith("Forward"):
             await event.edit(
-                "Media gizli hesabdır."
+                '['LANG'] ['SAVER_9'].'
             )
         else:
             await event.delete()
@@ -73,7 +73,7 @@ async def insta(event):
 
 
 CmdHelp('saver').add_command(
-    'tt', '<link>', 'Tiktokdan media yükləyər..'
+    'tt', '<linkə cavab olaraq>', 'Tiktokdan media yükləyər..'
 ).add_command(
     'ig', '<linkə cavab olaraq>', 'İnstagramdan video yükləyər.'
 ).add()
