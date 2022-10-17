@@ -4,8 +4,8 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from language import
-LANG get_value
+from userbot.language import
+LANG get_value("saver")
 
 @register(outgoing=True, pattern="^.tt(?: |$)(.*)")
 async def _(event):
