@@ -6,8 +6,9 @@ from userbot.events import register
 from userbot import bot, CMD_HELP
 from userbot.cmdhelp import CmdHelp
 import asyncio
+from userbot.language import get_value
 from telethon.tl.types import InputMessagesFilterPhotos, InputMessagesFilterVideo, InputMessagesFilterMusic, InputMessagesFilterVideo, InputMessagesFilterRoundVideo, InputMessagesFilterDocument, InputMessagesFilterUrl, InputMessagesFilterGif, InputMessagesFilterGeo, InputMessagesFilterContacts
-
+LANG = get_value("brendmisc")
 
 @register(outgoing=True, pattern="^.status$")
 async def fk(m):
@@ -24,16 +25,16 @@ async def fk(m):
     geos = str((await bot.get_messages(m.chat_id, limit=0, filter=InputMessagesFilterGeo())).total)
     cont = str((await bot.get_messages(m.chat_id, limit=0, filter=InputMessagesFilterContacts())).total)
     await asyncio.sleep(1)
-    await hs.edit(f"✉️ Ümumi Mesaj: {ms}\n🖼 Ümumi Foto: {ph}\n📹 Ümumi Video Mesaj: {vi}\n🎵 Ümumi Musiqi Mesajı: {mu}\n🎶 Ümumi Audio: {au}\n🎥 Ümumi Video: {vv}\n📂 Ümumi Fayl: {do}\n🔗 Ümumi Link: {urls}\n🎞 Ümumi GIF: {gifs}\n🗺 Ümumi Məkan: {geos}\n👭 Ümumi Kontaktlar: {cont}")
+    await hs.edit(LANG['SOZ_1'].format(ms, ph, vi, mu, au, vv, do, urls, gifs, geos, cont))
 
 @register(outgoing=True, pattern="^.qy (.*)")
 async def b(event):
     xx = event.pattern_match.group(1)
     if not xx:
-        return await event.edit("Xahiş edirəm bir mətn verin")
+        return await event.edit(LANG['SOZ_2'])
     tt = event.text
     msg = tt[4:]
-    kk = await event.edit("Mesajınız bütün qruplarınıza göndərilir 📢")
+    kk = await event.edit(LANG['SOZ_3'])
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -44,7 +45,7 @@ async def b(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await kk.edit(f"**Yayım yekunlaşdı📢**\nUğurlu {done} qrup✅ \n  Uğursuz {er} qrup❌")
+    await kk.edit(LANG['SOZ_4'].format(done, er))
 
 
 @register(outgoing=True, pattern=r"^\.sy(?: |$)(.*)")
