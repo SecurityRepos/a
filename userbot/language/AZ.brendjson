@@ -125,7 +125,9 @@
             "BIO": "📆 Tarix: {tarih} | 🕰️ Saat: {saat} | ",
             "NICK": "@BrendUserbot",
             "SETTED": "`%s nizamlandı :)`",
-            "NAME": "✯%s✯"
+            "NAME": "✯%s✯",
+            "AUTO_CMD1": 'ad ya da bio',
+            "AUTO_CMD2": 'Zamanla avtomatik dəyişilən ad və ya bio'
         },
 
         "blacklist": {
