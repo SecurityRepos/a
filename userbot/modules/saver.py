@@ -4,8 +4,8 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.language import
-LANG get_value("saver")
+from userbot.language import get_value
+LANG = get_value("saver")
 
 @register(outgoing=True, pattern="^.tt(?: |$)(.*)")
 async def _(event):
@@ -13,7 +13,7 @@ async def _(event):
         return
     d_link = event.pattern_match.group(1)
     if ".com" not in d_link:
-        await event.edit('[LANG] [SAVER_1]')
+        await event.edit('['LANG'] [SAVER_1]')
     else:
         await event.edit('[LANG]')
     chat = "@ttsavebot"
