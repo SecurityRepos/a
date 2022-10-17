@@ -18,7 +18,7 @@ async def auto(event):
         await event.edit(LANG['ALREADY'] % metod)
         return
     await event.edit(LANG['SETTING'] % metod)
-    if metod == "ad":
+    if metod == "ad" or "isim":
         HM = time.strftime("%H:%M")
         await event.client(functions.account.UpdateProfileRequest(last_name=LANG['NAME'] % HM))
     elif metod == "bio":
@@ -42,4 +42,4 @@ async def auto(event):
         except:
             return
 
-CmdHelp('auto').add_command('auto', 'ad ya da bio', 'Zamanla avtomatik dəyişilir', '.auto ad').add()
+CmdHelp('auto').add_command('auto', (LANG('AUTO_CMD1')), (LANG['AUTO_CMD2'])).add()
