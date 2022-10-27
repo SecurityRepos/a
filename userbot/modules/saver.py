@@ -73,9 +73,9 @@ async def insta(event):
 
 
 CmdHelp('saver').add_command(
-    'tt', 'SAVER_CMD1', 'SAVER_CMD2'
+    'tt', (LANG['SAVER_CMD1']), (LANG['SAVER_CMD2'])
 ).add_command(
-    'ig', 'SAVER_CMD3', 'SAVER_CMD4'
+    'ig', (LANG['SAVER_CMD3']), (LANG['SAVER_CMD4'])
 ).add()
 
 
